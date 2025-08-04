@@ -1,0 +1,33 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: todo-auth-and-user-preferences-service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/todo_auth}
+    username: ${SPRING_DATASOURCE_USERNAME:dbmaster}
+    password: ${SPRING_DATASOURCE_PASSWORD:qwerty123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET:dHEzSngqQ25DI3IyXkcmNUd5dXglNiZ1NUc1OUFOYiY=}
+    expiration-time: ${JWT_EXPIRATION_TIME:3600000}
+
+server:
+  port: ${SERVER_PORT:8082}
+  servlet:
+    context-path: /api/v1/auth
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8081/eureka}
